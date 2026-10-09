@@ -32,6 +32,34 @@ namespace Inclass
         public MainWindow()
         {
             InitializeComponent();
+
+            // Attach the same event handler to all board buttons
+            btn00.Click += BoardButton_Click;
+            btn01.Click += BoardButton_Click;
+            btn02.Click += BoardButton_Click;
+            btn10.Click += BoardButton_Click;
+            btn11.Click += BoardButton_Click;
+            btn12.Click += BoardButton_Click;
+            btn20.Click += BoardButton_Click;
+            btn21.Click += BoardButton_Click;
+            btn22.Click += BoardButton_Click;
+
+            // Attach event handlers for other buttons
+            btnChooseStart.Click += btnChooseStart_Click;
+            btnReset.Click += btnReset_Click;
+            btnExit.Click += btnExit_Click;
+
+            txtCurrentPlayer.Text = currentPlayer;
+        }
+        // Event handler for board button clicks
+        private void BoardButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button square = (Button)sender;
+
+            square.Content = currentPlayer;
+            square.IsEnabled = false;
+            movesCount++;
+
         }
     }
 }
