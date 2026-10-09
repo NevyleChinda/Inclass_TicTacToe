@@ -60,6 +60,40 @@ namespace Inclass
             square.IsEnabled = false;
             movesCount++;
 
+            // Check for a winner after each move
+            if (CheckForWinner())
+            {
+                
+            }
+
+        }
+
+        // Event handler for the choose starting player button
+        private void btnChooseStart_Click(object sender, RoutedEventArgs e)
+        {
+            // First, checks if a move has been made. If so, it will not allow the starting player to be changed.
+            if (movesCount > 0)
+            {
+                MessageBox.Show("Cannot change starting player after a move has been made.");
+            }
+        }
+
+        // Event handler for the reset button
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        // Event handler for the exit button
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        // Method to check for a winner
+        private bool CheckForWinner()
+        {
+            
         }
     }
 }
