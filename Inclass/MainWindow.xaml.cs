@@ -74,14 +74,27 @@ namespace Inclass
             // First, checks if a move has been made. If so, it will not allow the starting player to be changed.
             if (movesCount > 0)
             {
-                MessageBox.Show("Cannot change starting player after a move has been made.");
+                MessageBox.Show("Cannot change starting player after a move has been made. You are currnetly playing");
+                return;
             }
+            MessageBoxResult choice = MessageBox.Show(
+                $"Should {GetPlayerName(XMark)} (X) go first?\n\nYes = X goes first\nNo = O goes first",
+                "Choose Starting Player",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            startingPlayer = (choice == MessageBoxResult.Yes) ? XMark : OMark;
+            currentPlayer = startingPlayer;
+            txtCurrentPlayer.Text = currentPlayer;
+
         }
 
         // Event handler for the reset button
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            
+            txtXScore.Text = "0";
+            txtOScore.Text = "0";
+            txtCatsScore.Text = "0";
         }
 
         // Event handler for the exit button
