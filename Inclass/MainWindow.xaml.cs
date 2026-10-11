@@ -100,13 +100,46 @@ namespace Inclass
         // Event handler for the exit button
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            
+            Close();
         }
 
         // Method to check for a winner
         private bool CheckForWinner()
         {
-            
+            if (CheckLine(btn00, btn01, btn02)) return true;
+            if (CheckLine(btn10, btn11, btn12)) return true;
+            if (CheckLine(btn20, btn21, btn22)) return true;
+
+            if (CheckLine(btn00, btn10, btn20)) return true;
+            if (CheckLine(btn01, btn11, btn21)) return true;
+            if (CheckLine(btn02, btn12, btn22)) return true;
+
+            if (CheckLine(btn00, btn11, btn22)) return true;
+            if (CheckLine(btn02, btn11, btn20)) return true;
+
+            return false;
+        }
+
+        // Method to check if a line of buttons has the same content (i.e., a winning line)
+        private bool CheckLine(Button b1, Button b2, Button b3)
+        {
+            if (b1.Content.ToString() == currentPlayer &&
+                b2.Content.ToString() == currentPlayer &&
+                b3.Content.ToString() == currentPlayer)
+            {
+                HighlightSquare(b1);
+                HighlightSquare(b2);
+                HighlightSquare(b3);
+                return true;
+            }
+            return false;
+        }
+
+        // Method to highlight a winning square
+        private void HighlightSquare(Button square)
+        {
+            square.IsEnabled = true;
+            square.Background = Brushes.LightGreen;
         }
     }
 }
