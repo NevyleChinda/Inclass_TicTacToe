@@ -63,7 +63,7 @@ namespace Inclass
             // Check for a winner after each move
             if (CheckForWinner())
             {
-                
+
             }
 
         }
@@ -78,12 +78,12 @@ namespace Inclass
                 return;
             }
             MessageBoxResult choice = MessageBox.Show(
-                $"Should {GetPlayerName(XMark)} (X) go first?\n\nYes = X goes first\nNo = O goes first",
+                $"Should {GetPlayerName(Xmark)} (X) go first?\n\nYes = X goes first\nNo = O goes first",
                 "Choose Starting Player",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
-            startingPlayer = (choice == MessageBoxResult.Yes) ? XMark : OMark;
+            startingPlayer = (choice == MessageBoxResult.Yes) ? Xmark : Omark;
             currentPlayer = startingPlayer;
             txtCurrentPlayer.Text = currentPlayer;
 
@@ -140,6 +140,13 @@ namespace Inclass
         {
             square.IsEnabled = true;
             square.Background = Brushes.LightGreen;
+        }
+
+        // Method to get the player's name based on their mark (X or O)
+        private string GetPlayerName(string mark)
+        {
+            string name = (mark == Xmark) ? txtXPlayer.Text.Trim() : txtOPlayer.Text.Trim();
+            return (name == "") ? $"Player {mark}" : name;
         }
     }
 }
