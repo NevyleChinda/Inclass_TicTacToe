@@ -10,6 +10,7 @@
         Width="800" MinWidth="600"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
+        Background="AliceBlue"
      >
     <!-- Name: Nevyle Chinda | Date: October 2, 2026 | Description: Tic Tac Toe game window layout. -->
     <Grid>

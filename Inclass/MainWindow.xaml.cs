@@ -124,6 +124,7 @@ namespace Inclass
             txtXScore.Text = "0";
             txtOScore.Text = "0";
             txtCatsScore.Text = "0";
+            ResetBoard();
         }
 
         // Event handler for the exit button
