@@ -63,10 +63,39 @@ namespace Inclass
             // Check for a winner after each move
             if (CheckForWinner())
             {
+                MessageBox.Show($"{GetPlayerName(currentPlayer)} ({currentPlayer}) is the Winner!",
+                                "Winner Announcement",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
 
+                if (currentPlayer == Xmark)
+                {
+                    txtXScore.Text = (int.Parse(txtXScore.Text) + 1).ToString();
+                }
+                else
+                {
+                    txtOScore.Text = (int.Parse(txtOScore.Text) + 1).ToString();
+                }
+
+                ResetBoard();
             }
+            else if (movesCount == 9)
+            {
+                MessageBox.Show("It's a tie! Nobody wins this round.",
+                                "Tie Game",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
 
+                txtCatsScore.Text = (int.Parse(txtCatsScore.Text) + 1).ToString();
+                ResetBoard();
+            }
+            else
+            {
+                currentPlayer = (currentPlayer == Xmark) ? Omark : Xmark;
+                txtCurrentPlayer.Text = currentPlayer;
+            }
         }
+
 
         // Event handler for the choose starting player button
         private void btnChooseStart_Click(object sender, RoutedEventArgs e)
@@ -148,5 +177,32 @@ namespace Inclass
             string name = (mark == Xmark) ? txtXPlayer.Text.Trim() : txtOPlayer.Text.Trim();
             return (name == "") ? $"Player {mark}" : name;
         }
+
+        // Method that resets the game board ad move count.
+        private void ResetBoard()
+        {
+            ResetSquare(btn00);
+            ResetSquare(btn01);
+            ResetSquare(btn02);
+            ResetSquare(btn10);
+            ResetSquare(btn11);
+            ResetSquare(btn12);
+            ResetSquare(btn20);
+            ResetSquare(btn21);
+            ResetSquare(btn22);
+
+            movesCount = 0;
+            currentPlayer = startingPlayer;
+            txtCurrentPlayer.Text = currentPlayer;
+        }
+
+        // Method to reset each individual square
+        private void ResetSquare(Button square)
+        {
+            square.Content = "";
+            square.IsEnabled = true;
+            square.ClearValue(Button.BackgroundProperty);
+        }
     }
 }
+
